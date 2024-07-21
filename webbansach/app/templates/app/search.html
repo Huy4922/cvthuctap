@@ -1,0 +1,32 @@
+{% extends 'app/base.html'%}
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block register %}
+    <h5> Kết quả tìm kiếm cho: {{searched}} </h5> <br/>
+    <div class="row" style="width: 100%">
+      {% for product in keys %}
+      <div class="col-lg-3 mb-3">
+        <img class="thumbnail" src="{{product.ImageURL}}" style="width: 350px;height: 350px;">
+        <div class="box-element product" style="width: 350px;">
+          <h6><strong>{{product.name}}</strong></h6>
+          <hr>
+          <button data-product={{product.id}} data-action = "add" class="btn btn-outline-secondary add-btn update-cart" style="color: rgb(19, 123, 19);">Thêm vào giỏ</button>
+          <a class="btn btn-outline-success" href="#">Xem</a>
+          <hr>
+          <h5 style="display: inline-block;"><strong>{{product.price| floatformat:"-1" | intcomma}} VND</strong></h5>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endblock register %}
+</body>
+</html>
